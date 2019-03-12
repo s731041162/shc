@@ -1,0 +1,163 @@
+
+<html>
+	<head>
+		<title>Recall追蹤客戶快速又方便</title>
+		<link href="index2.css" type="text/css" rel="stylesheet" />
+		<link href="D:\Users\ShuHao\Desktop\個人文件\MyWebsite\jquery-ui-1.12.1.custom\jquery-ui.min.css"  rel="stylesheet" />
+		
+		<script src="D:\Users\ShuHao\Desktop\個人文件\MyWebsite\0636920032663-master\0636920032663-master\MM_JAVASCRIPT3E\_js\jquery.min.js"></script>
+		<script src="D:\Users\ShuHao\Desktop\個人文件\MyWebsite\jquery-ui-1.12.1.custom\jquery-ui.min.js"></script>
+		
+		
+	</head>
+	
+	<body>
+		<div class="top-container">
+			<div class="grid>"
+				<p>Recall</p>
+			</div>
+			<div class="grid" id="login">
+				<input type="button" style="background-image:url(login.png); width:160px; height:48px;">
+			</div>
+		</div>
+		
+		<form><br>
+    		<select id="ClientList" onchange="LoadClient()" style="width:120px;height:20px;"></select>
+		</form>
+		
+		<form>
+　			<b>日期：</b><input id="DatePicker" type="text" value="" placeholder="點選此處以選擇日期" onchange="WriteDate()"/> <br>
+		</form>
+					
+		<b>動作：</b><br><textarea id="MoveInput" type="text" name="MoveInput" value="" placeholder="點選下列選項或自行輸入" style="resize:none; width:500px;height:50px;" ></textarea> <input type="button" id="MoveSubmit" name="MoveSubmit" value="送出"><br>
+					
+		<input id="MoveVisit" type="submit" name="MoveVisit" value="拜訪" />
+		<input id="MoveCall" type="submit" name="MoveCall" value="電訪" />
+		<input id="MoveDiscusion" type="submit" name="MoveCall" value="討論產品" /><br><br>
+					
+		<b>反應：</b><br><textarea id="FeelInput" type="text" name="FeelInput" value="" placeholder="點選下列選項或自行輸入" style="resize:none; width:500px;height:50px;" ></textarea> <input type="button" id="FeelSubmit" name="FeelSubmit" value="送出"><br>
+		<input id="FeelGood" type="submit" name="FeelGood" value="良好" />
+		<input id="FeelSoso" type="submit" name="FeelSoso" value="普通" />
+		<input id="FeelBad" type="submit" name="FeelBad" value="不好" /><br><br>
+					
+		<b>後續：</b><br><textarea id="NextInput" type="text" name="NextInput" value="" placeholder="點選下列選項或自行輸入" style="resize:none; width:500px; height:50px;" ></textarea> <input type="button" id="NextSubmit" name="NextSubmit" value="送出"><br>
+		<input id="NextFollow" type="submit" name="NextFollow" value="跟進" />
+		<input id="NextStop" type="submit" name="NextStop" value="停止" />
+		<input id="NextPause" type="submit" name="NextPause" value="有空再聯繫" />	
+		<hr />
+
+		<table border="1.5">
+			<tr>
+				<th width="240">客戶名稱</th>
+				<th width="240">日期</th>
+				<th width="240">動作</th>
+				<th width="240">反應</th>
+				<th width="240">後續</th>
+			</tr>
+			<tr>
+				<td id="Client"></td>
+				<td id="Date"></td>
+				<td id="Move"></td>
+				<td id="Feel"></td>
+				<td id="Next"></td>
+			</tr>
+		</table><br />
+		
+		
+		
+		<script>
+			$(function() {
+    			$("#DatePicker").datepicker();
+  			});
+			/* 客戶 */
+			var Client = ["請選擇客戶","華碩","宏碁","蘋果"];
+			var ClientSelect = document.getElementById("ClientList");
+			var inner = "";
+			for(var i =0; i<Client.length; i++){
+				inner = inner + "<option value=i>" + Client[i] + "</option>";
+			}
+			ClientSelect.innerHTML = inner;
+			
+			function LoadClient(y){
+　				var y = document.getElementById("ClientList");
+				document.getElementById("Client").innerHTML = Client[y.selectedIndex];
+			}
+			/* 日期 */
+			var DateVar=[];
+			function WriteDate(z){
+				var z = document.getElementById("DatePicker");
+				DateVar.push(z.value + "<br>");
+				document.getElementById("Date").innerHTML = DateVar;
+			}
+			/* 日期 */
+			
+			
+			/* 動作 */
+			var Move = [];
+			$("#MoveVisit").click(function() {
+				Move.push("拜訪<br>");
+				document.getElementById("Move").innerHTML = Move;
+    		});
+    		$("#MoveCall").click(function() {
+				Move.push("電訪<br>");
+				document.getElementById("Move").innerHTML = Move;
+    		});
+    		$("#MoveDiscusion").click(function() {
+				Move.push("討論產品<br>");
+				document.getElementById("Move").innerHTML = Move;
+    		});
+			$("#MoveSubmit").click(function() {
+				var MoveReg = document.getElementById("MoveInput").value;
+				Move.push(MoveReg + "<br>");
+				document.getElementById("Move").innerHTML = Move;
+    		});
+			/* 動作 */
+			
+			
+			/* 客戶回饋 */
+			var Feel = [];
+			$("#FeelGood").click(function() {
+				Feel.push("良好<br>");
+				document.getElementById("Feel").innerHTML = Feel;
+    		});
+			$("#FeelSoso").click(function() {
+				Feel.push("普通<br>");
+				document.getElementById("Feel").innerHTML = Feel;
+    		});
+			$("#FeelBad").click(function() {
+				Feel.push("不好<br>");
+				document.getElementById("Feel").innerHTML = Feel;
+    		});
+			$("#FeelSubmit").click(function() {
+				var FeelReg = document.getElementById("FeelInput").value;
+				Feel.push(FeelReg + "<br>");
+				document.getElementById("Feel").innerHTML = Feel;
+    		});
+			/* 客戶回饋 */
+			
+			
+			/* 後續跟進 */
+			var Next = [];
+			$("#NextFollow").click(function() {
+				Next.push("跟進<br>")
+				document.getElementById("Next").innerHTML = Next;
+    		});
+    		$("#NextStop").click(function() {
+				Next.push("停止<br>")
+				document.getElementById("Next").innerHTML = Next;
+    		});
+    		$("#NextPause").click(function() {
+				Next.push("有空再聯繫<br>")
+				document.getElementById("Next").innerHTML = Next;
+    		});
+			$("#NextSubmit").click(function() {
+				var NextReg = document.getElementById("NextInput").value;
+				Next.push(NextReg + "<br>");
+				document.getElementById("Next").innerHTML = Next;
+    		});
+			/* 後續跟進 */
+			
+		</script>
+		
+	</body>
+</html>
