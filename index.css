@@ -1,28 +1,23 @@
 ﻿
 body {
-	font-family: arial;
+	font-family: Microsoft JhengHei;
 	background-color: rgb(240, 240, 240);
+	font-size: 110%;
 }
 
 
 .top-container {
-	padding-top:1%;
 	display: grid;
-	background-color: rgba(200, 240, 190, 1);
+	background-color: rgba(130, 210, 190, 1);
 	grid-column: span 2;
 		grid-column-start: span 2;
 		grid-column-end: auto;
 	grid-template-columns: [vv1] 40% [vv2] 50% [vv3] auto [vv4];
 }
 
-.top-container {
-	padding-left: 20px;
-	font-size: 40px;
-	color: rgb(255, 100, 255);
-}
-
-.top-container #login input {
+#login a {
 	float: right;
+	padding-top: 30px;
 }
 
 body table tr input{
@@ -45,4 +40,20 @@ table td{
 
 body table tr {
 	vertical-align: text-top;
+}
+
+#adminIn {
+	float: right;
+}
+
+#ClientListForm {
+	padding-left: 20px;
+}
+
+.ChooseDiv {
+	padding-left: 23px;
+}
+
+#adminTabContainer {
+	font-family: Microsoft JhengHei;
 }
